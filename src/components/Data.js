@@ -1,0 +1,40 @@
+export const Category = [
+    {
+        name:"None",
+        value:"None"
+    },
+    {
+        name:"Work",
+        value:"Work"
+    },
+    {
+        name:"Personal",
+        value:"Personal"
+    },
+    {
+        name:"Health",
+        value:"Health"
+    },
+    {
+        name:"Wellness",
+        value:"Wellness"
+    },
+]
+export const Priority = [
+    {
+        name:"None",
+        value:"None"
+    },
+    {
+        name:"Low",
+        value:"Low"
+    },
+    {
+        name:"Medium",
+        value:"Medium"
+    },
+    {
+        name:"High",
+        value:"High"
+    },
+]
