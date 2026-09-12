@@ -5,14 +5,14 @@ import { Category, Priority } from './components/Data'
 
 function App() {
 
- const [tasks, setTasks] = useState(() => {
-  const savedTasks = localStorage.getItem("tasks")
-  return savedTasks ? JSON.parse(savedTasks) : []
-})
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks")
+    return savedTasks ? JSON.parse(savedTasks) : []
+  })
 
-useEffect(() => {
-  localStorage.setItem("tasks", JSON.stringify(tasks))
-}, [tasks])
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks])
 
   const [isPopupShow, setIsPopupShow] = useState(false)
 
@@ -46,16 +46,16 @@ useEffect(() => {
   return (
 
     <>
-      <section >
+      <section>
         <section className='flex gap-6 m-6'>
-          <aside className='border h-140 w-[20%] rounded-2xl px-3 py-2 text-center'>
+          <aside className='shadow-2xl h-143 w-[20%] rounded-2xl px-3 py-2 text-center bg-gray-100 flex flex-col overflow-y-scroll scrollbar-none'>
             <h1 className='text-2xl font-bold text-blue-500'>ZenTodo</h1>
             <p className='text-sm flex flex-wrap font-bold text-gray-700 break-words mt-2'>Track Your Personal and Proffestional Growth</p>
 
             <h1 className='text-xl font-semibold mt-6'>Status</h1>
 
             <section>
-              <div className='flex items-center justify-evenly gap-15'>
+              <div className='flex items-center justify-evenly gap-12 cursor-pointer hover:bg-white py-3 rounded-xl'>
                 <p>All Tasks</p>
                 <span className='border px-1 rounded-full'>{tasks.length}</span>
               </div>
@@ -64,51 +64,93 @@ useEffect(() => {
             <h1 className='text-xl font-semibold mt-6'>Category</h1>
 
             <section>
-              <div className='flex items-center justify-evenly gap-10 mt-4'>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
                 <p className='min-w-20 max-w-20'>Work</p>
-                <span className='border px-1 rounded-full'></span>
+                <span className='border px-1 rounded-full'>
+                  {tasks.filter((task) => task.category === "Work").length}
+                </span>
               </div>
-              <div className='flex items-center justify-evenly gap-10 mt-4'>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
                 <p className='min-w-20 max-w-20'>Personal</p>
-                <span className='border px-1 rounded-full'></span>
+                <span className='border px-1 rounded-full'>
+                   {tasks.filter((task) => task.category === "Personal").length}
+                </span>
               </div>
-              <div className='flex items-center justify-evenly gap-10 mt-4'>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
                 <p className='min-w-20 max-w-20'>Health</p>
-                <span className='border px-1 rounded-full'></span>
+                <span className='border px-1 rounded-full'>
+                   {tasks.filter((task) => task.category === "Health").length}
+                </span>
               </div>
-              <div className='flex items-center justify-evenly gap-10 mt-4'>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
                 <p className='min-w-20 max-w-20'>Wellness</p>
-                <span className='border px-1 rounded-full'></span>
+                <span className='border px-1 rounded-full'>
+                   {tasks.filter((task) => task.category === "Wellness").length}
+                </span>
+                </div>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
+                <p className='min-w-20 max-w-20'>Others</p>
+                <span className='border px-1 rounded-full'>
+                   {tasks.filter((task) => task.category === "None").length}
+                </span>
               </div>
             </section>
 
+             <h1 className='text-xl font-semibold mt-6'>Priority</h1>
+             <section>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
+                <p className='min-w-20 max-w-20'>Low</p>
+                <span className='border px-1 rounded-full'>
+                  {tasks.filter((task) => task.priority === "Low").length}
+                </span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
+                <p className='min-w-20 max-w-20'>Medium</p>
+                <span className='border px-1 rounded-full'>
+                  {tasks.filter((task) => task.priority === "Medium").length}
+                </span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
+                <p className='min-w-20 max-w-20'>High</p>
+                <span className='border px-1 rounded-full'>
+                  {tasks.filter((task) => task.priority === "High").length}
+                </span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-2 cursor-pointer hover:bg-white py-3 rounded-xl'>
+                <p className='min-w-20 max-w-20'>Others</p>
+                <span className='border px-1 rounded-full'>
+                  {tasks.filter((task) => task.priority === "None").length}
+                </span>
+              </div>
+             </section>
+
           </aside>
-          <main className='border max-w-[80%] min-w-[80%] h-140 rounded-2xl p-6 bg-gray-100'>
-            <div className='h-20 shadow-xl bg-white px-5 flex items-center  justify-between rounded-2xl'>
+          <main className='shadow-2xl max-w-[80%] min-w-[80%] h-auto rounded-2xl p-6 bg-gray-100'>
+            <div className='h-20 shadow-xl bg-white px-5 flex items-center  justify-between rounded-2xl '>
               <div>
                 <h1 className='text-2xl font-semibold'>Hare krishna 🙏🏻</h1>
                 <p><LiveClock /></p>
 
               </div>
-              <button className='px-4 py-1 text-right border rounded shadow-2xl cursor-pointer m-3 bg-pink-800 text-white' onClick={() => {
+              <button className='px-4 cursor-pointer py-1 text-right border rounded shadow-2xl cursor-pointer m-3 bg-pink-800 text-white' onClick={() => {
                 setIsPopupShow(true)
               }}>Add Task</button>
             </div>
 
-            <section className='flex items-center justify-between gap-10 mt-5'>
-              <div className='w-50 h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
+            <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 cursor-pointer gap-5 mt-5'>
+              <div className='w-full h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
                 <h1 className='text-xl font-semibold'>Total Tasks 🌱</h1>
                 <p>{tasks.length}</p>
               </div>
-              <div className='w-50 h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
+              <div className='w-full h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
                 <h1 className='text-xl font-semibold'>OverDue ⚠️</h1>
                 <p>{overdueTasks}</p>
               </div>
-              <div className='w-50 h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
+              <div className='w-full h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
                 <h1 className='text-xl font-semibold'>Competed ✅</h1>
                 <p>{tasks.filter((task) => task.isCompleted).length}</p>
               </div>
-              <div className='w-50 h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
+              <div className='w-full h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
                 <h1 className='text-xl font-semibold'>Pending ⌛</h1>
 
                 <p>{tasks.filter((task) => task.isCompleted !== true).length}</p>
@@ -116,88 +158,81 @@ useEffect(() => {
             </section>
 
             <section className='w-full flex flex-col overflow-y-scroll h-80 mt-5  scrollbar-none rounded-2xl'>
-          <ul>
-            {tasks.map((el, i) => (
-              <li key={i} className={`${el.isCompleted ? "bg-gray-500 text-white" : "bg-white"} p-8 mb-2  shadow-2xs rounded-2xl m-3`}>
-                <div className='flex justify-between'>
-                  <p className={'text-2xl'}>{el.challenge}</p>
-                  <span>
-                    <button onClick={() => {
-                      tasks[i].isCompleted = true;
-                      const clonetask = [...tasks]
-                      setTasks(clonetask)
+              <ul>
+                {tasks.map((el, i) => (
+                  <li key={i} className={`${el.isCompleted ? "bg-gray-500 text-white" : "bg-white"} p-8 mb-2  shadow-2xs rounded-2xl m-3`}>
+                    <div className='flex justify-between'>
+                      <p className={'text-2xl'}>{el.challenge}</p>
+                      <span>
+                        <button onClick={() => {
+                          tasks[i].isCompleted = true;
+                          const clonetask = [...tasks]
+                          setTasks(clonetask)
 
-                    }} key={i}>✔️</button>
-                    <button onClick={() => {
+                        }} key={i}>✔️</button>
+                        <button onClick={() => {
 
-                      const clonetask = [...tasks]
-                      clonetask.splice(i, 1)
-                      setTasks(clonetask)
-                    }}>✖️</button>
-                    <button onClick={() => {
-                      console.log(tasks[i])
-                      setEditIndex(i)
-                      setTask(tasks[i].challenge)
-                      setDesc(tasks[i].description)
-                      setCategory(tasks[i].category)
-                      setPriority(tasks[i].priority)
-                      setDueDate(tasks[i].dueDate)
-                      setSubTasks(tasks[i].subTasks)
-                      setIsPopupShow(true)
-                    }}>
-                      ✏️
-                    </button>
-                  </span>
-                </div>
-
-                <p className='text-[14px]'>{el.description}</p>
-                <div className='align-text-bottom text-[14px] mt-3'>
-
-                  <button className='border rounded p-0.5 mr-2 my-2'>{el.category}</button>
-                  <button
-                    className={`border rounded p-0.5 mr-2 my-2 ${new Date(el.dueDate) < new Date()
-                      ? "bg-red-500 text-white"
-                      : ""
-                      }`}
-                  >
-                    {new Date(el.dueDate) < new Date()
-                      ? "OverDue ⚠️"
-                      : el.dueDate}
-                  </button>
-                  <button className='border rounded p-0.5 mr-2 my-2'>{el.priority}</button>
-                </div>
-                <div className='flex justify-end'>
-
-                  <span className='ml-3 font-semibold text-[16px]'>SubTasks ({el.subTasks.length})</span>
-                </div>
-
-                <div>
-                  {el.subTasks.map((el, i) => (
-                    <div key={i}>
-                      <input type="checkbox" name="" id="" onClick={(e) => {
-                        el.isCompleted = true;
-                        e.target.disabled = true
-
-                      }} />
-                      <span className='ml-3 font-semibold'>{el.subTask}</span>
-
+                          const clonetask = [...tasks]
+                          clonetask.splice(i, 1)
+                          setTasks(clonetask)
+                        }}>✖️</button>
+                        <button onClick={() => {
+                          console.log(tasks[i])
+                          setEditIndex(i)
+                          setTask(tasks[i].challenge)
+                          setDesc(tasks[i].description)
+                          setCategory(tasks[i].category)
+                          setPriority(tasks[i].priority)
+                          setDueDate(tasks[i].dueDate)
+                          setSubTasks(tasks[i].subTasks)
+                          setIsPopupShow(true)
+                        }}>
+                          ✏️
+                        </button>
+                      </span>
                     </div>
-                  ))}</div>
-              </li>
-            ))}
-          </ul>
+
+                    <p className='text-[14px]'>{el.description}</p>
+                    <div className='align-text-bottom text-[14px] mt-3'>
+
+                      <button className='border rounded p-0.5 mr-2 my-2'>{el.category}</button>
+                      <button
+                        className={`border rounded p-0.5 mr-2 my-2 ${new Date(el.dueDate) < new Date()
+                          ? "bg-red-500 text-white"
+                          : ""
+                          }`}
+                      >
+                        {new Date(el.dueDate) < new Date()
+                          ? "OverDue ⚠️"
+                          : el.dueDate}
+                      </button>
+                      <button className='border rounded p-0.5 mr-2 my-2'>{el.priority}</button>
+                    </div>
+                    <div className='flex justify-end'>
+
+                      <span className='ml-3 font-semibold text-[16px]'>SubTasks ({el.subTasks.length})</span>
+                    </div>
+
+                    <div>
+                      {el.subTasks.map((el, i) => (
+                        <div key={i}>
+                          <input type="checkbox" name="" id="" onClick={(e) => {
+                            el.isCompleted = true;
+                            e.target.disabled = true
+
+                          }} />
+                          <span className='ml-3 font-semibold'>{el.subTask}</span>
+
+                        </div>
+                      ))}</div>
+                  </li>
+                ))}
+              </ul>
 
             </section>
 
           </main>
         </section>
-
-
-
-       
-
-
-
 
         {
           isPopupShow && (
@@ -281,7 +316,7 @@ useEffect(() => {
                     value={singleSubtask}
                     onChange={(e) => { setSingleSubTask(e.target.value) }}
                   />
-                  <button className='border rounded px-4 py-0.5 ml-2 cursor-pointer bg-gray-200 hover:bg-gray-800 hover:text-white'
+                  <button className='border rounded px-4 cursor-pointer py-0.5 ml-2 cursor-pointer bg-gray-200 hover:bg-gray-800 hover:text-white'
                     type='button'
                     onClick={() => {
                       setSubTasks((prev) => [...prev, { subTask: singleSubtask, isCompleted: false }])
@@ -319,7 +354,7 @@ useEffect(() => {
                 <div className='text-right mt-3'>
                   <button
                     type='submit'
-                    className='border rounded px-4 mr-3 bg-gray-200 hover:bg-gray-800 hover:text-white'
+                    className='border rounded px-4 cursor-pointer mr-3 bg-gray-200 hover:bg-gray-800 hover:text-white cursor-pointer'
 
                   >{editIndex !== null ? "Update" : "Add"}</button>
                   <button
@@ -327,7 +362,7 @@ useEffect(() => {
                     onClick={() => {
                       resetForm()
                     }}
-                    className='border rounded px-4 bg-gray-200 hover:bg-gray-800 hover:text-white'
+                    className='border rounded px-4 cursor-pointer bg-gray-200 hover:bg-gray-800 hover:text-white cursor-pointer'
                   >cancel</button>
                 </div>
               </form>
