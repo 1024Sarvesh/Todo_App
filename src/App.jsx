@@ -48,18 +48,42 @@ useEffect(() => {
     <>
       <section >
         <section className='flex gap-6 m-6'>
-          <aside className='border h-140 w-[20%] rounded-2xl px-3 py-2'>
+          <aside className='border h-140 w-[20%] rounded-2xl px-3 py-2 text-center'>
             <h1 className='text-2xl font-bold text-blue-500'>ZenTodo</h1>
             <p className='text-sm flex flex-wrap font-bold text-gray-700 break-words mt-2'>Track Your Personal and Proffestional Growth</p>
 
             <h1 className='text-xl font-semibold mt-6'>Status</h1>
 
-            <div>
+            <section>
+              <div className='flex items-center justify-evenly gap-15'>
+                <p>All Tasks</p>
+                <span className='border px-1 rounded-full'>{tasks.length}</span>
+              </div>
+            </section>
 
-            </div>
+            <h1 className='text-xl font-semibold mt-6'>Category</h1>
+
+            <section>
+              <div className='flex items-center justify-evenly gap-10 mt-4'>
+                <p className='min-w-20 max-w-20'>Work</p>
+                <span className='border px-1 rounded-full'></span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-4'>
+                <p className='min-w-20 max-w-20'>Personal</p>
+                <span className='border px-1 rounded-full'></span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-4'>
+                <p className='min-w-20 max-w-20'>Health</p>
+                <span className='border px-1 rounded-full'></span>
+              </div>
+              <div className='flex items-center justify-evenly gap-10 mt-4'>
+                <p className='min-w-20 max-w-20'>Wellness</p>
+                <span className='border px-1 rounded-full'></span>
+              </div>
+            </section>
 
           </aside>
-          <main className='border w-[100%] h-140 rounded-2xl p-6 bg-gray-100'>
+          <main className='border max-w-[80%] min-w-[80%] h-140 rounded-2xl p-6 bg-gray-100'>
             <div className='h-20 shadow-xl bg-white px-5 flex items-center  justify-between rounded-2xl'>
               <div>
                 <h1 className='text-2xl font-semibold'>Hare krishna 🙏🏻</h1>
@@ -85,22 +109,16 @@ useEffect(() => {
                 <p>{tasks.filter((task) => task.isCompleted).length}</p>
               </div>
               <div className='w-50 h-20 rounded-xl shadow-2xl text-center p-3 bg-white'>
-                <h1 className='text-xl font-semibold'></h1>
-                <p></p>
+                <h1 className='text-xl font-semibold'>Pending ⌛</h1>
+
+                <p>{tasks.filter((task) => task.isCompleted !== true).length}</p>
               </div>
-
-
             </section>
 
-          </main>
-        </section>
-
-
-
-        <div className='border-amber-950 w-[600px] h-auto'>
+            <section className='w-full flex flex-col overflow-y-scroll h-80 mt-5  scrollbar-none rounded-2xl'>
           <ul>
             {tasks.map((el, i) => (
-              <li key={i} className={`${el.isCompleted ? "bg-green-500" : "bg-white"} px-4 mb-2 border shadow rounded-2xl m-3`}>
+              <li key={i} className={`${el.isCompleted ? "bg-gray-500 text-white" : "bg-white"} p-8 mb-2  shadow-2xs rounded-2xl m-3`}>
                 <div className='flex justify-between'>
                   <p className={'text-2xl'}>{el.challenge}</p>
                   <span>
@@ -169,7 +187,14 @@ useEffect(() => {
             ))}
           </ul>
 
-        </div>
+            </section>
+
+          </main>
+        </section>
+
+
+
+       
 
 
 
@@ -179,7 +204,7 @@ useEffect(() => {
             <section className='fixed inset-0 bg-black/80 flex justify-center items-center overflow-y-auto'>
               <form className='bg-white border w-96 p-3 rounded-2xl shadow-2xl' onSubmit={(e) => {
                 e.preventDefault()
-                const newTask =
+                const Task =
                 {
                   challenge: task,
                   description: desc,
@@ -192,11 +217,11 @@ useEffect(() => {
                 if (editIndex !== null) {
                   setTasks((prev) =>
                     prev.map((item, index) =>
-                      index === editIndex ? newTask : item
+                      index === editIndex ? Task : item
                     )
                   );
                 } else {
-                  setTasks((prev) => [...prev, newTask]);
+                  setTasks((prev) => [...prev, Task]);
                 }
 
                 resetForm()
